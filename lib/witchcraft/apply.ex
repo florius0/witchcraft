@@ -122,7 +122,7 @@ defclass Witchcraft.Apply do
 
   extend Witchcraft.Functor
 
-  use Witchcraft.Internal, deps: [Witchcraft.Functor]
+  use Witchcraft.Internal, overrides: [then: 2], deps: [Witchcraft.Functor]
 
   use Witchcraft.Functor
   use Quark
@@ -374,8 +374,8 @@ defclass Witchcraft.Apply do
   ## Examples
 
       iex> [1, 2, 3]
-      ...> |> Witchcraft.Apply.then([4, 5, 6])
-      ...> |> Witchcraft.Apply.then([7, 8, 9])
+      ...> |> then([4, 5, 6])
+      ...> |> then([7, 8, 9])
       [
         7, 8, 9,
         7, 8, 9,
@@ -388,7 +388,7 @@ defclass Witchcraft.Apply do
         7, 8, 9
       ]
 
-      iex> {1, 2, 3} |> Witchcraft.Apply.then({4, 5, 6}) |> Witchcraft.Apply.then({7, 8, 9})
+      iex> {1, 2, 3} |> then({4, 5, 6}) |> then({7, 8, 9})
       {12, 15, 9}
 
   """
