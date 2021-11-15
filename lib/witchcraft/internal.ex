@@ -12,6 +12,7 @@ defmodule Witchcraft.Internal do
 
   - `:overrides` – List of overrides in module where used
   - `:deps` – List of modules that will be used in generated `__using__/1` macro
+  - `:override_kerrnel_default` – Default value for `:override_kernel` mentioned below. Defaullts to true
 
   ## Generated `__usnig__(opts \\ [])` macro supports the following options:
 
@@ -21,6 +22,7 @@ defmodule Witchcraft.Internal do
   defmacro __using__(opts \\ []) do
     overrides = Keyword.get(opts, :overrides, [])
     deps = Keyword.get(opts, :deps, [])
+    override_kernel_default = Keyword.get(opts, :override_kernel_default, true)
 
     quote do
       @overrides unquote(overrides)
@@ -28,18 +30,18 @@ defmodule Witchcraft.Internal do
       import Kernel, except: unquote(overrides)
 
       defmacro __using__(opts \\ []) do
-        Witchcraft.Internal.import_helper(opts, unquote(overrides), unquote(deps), __MODULE__)
+        Witchcraft.Internal.import_helper(opts, unquote(overrides), unquote(override_kernel_default), unquote(deps), __MODULE__)
       end
     end
   end
 
   @doc false
-  def import_helper(opts, overrides, deps, module) do
+  def import_helper(opts, overrides, override_kernel_default, deps, module) do
     excepts = Keyword.get(opts, :except, [])
     only = Keyword.get(opts, :only)
     deps_quoted = use_multi(deps, opts)
 
-    if Keyword.get(opts, :override_kernel, true) do
+    if Keyword.get(opts, :override_kernel, override_kernel_default) do
       kernel_imports = kernel_imports(overrides -- excepts, only)
       module_imports = module_imports(excepts, only)
 
