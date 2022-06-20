@@ -1,4 +1,4 @@
-\defmodule Witchcraft.Mixfile do
+defmodule Witchcraft.Mixfile do
   use Mix.Project
 
   def project do
