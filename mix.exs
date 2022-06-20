@@ -46,7 +46,7 @@ defmodule Witchcraft.Mixfile do
       {:operator,    "~> 0.2"},
 
       {:quark,       "~> 2.2"},
-      {:type_class,  "~> 1.2"}
+      {:type_class,  github: "florius0/type_class"}
     ]
   end
 
