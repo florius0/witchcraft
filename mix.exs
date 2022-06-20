@@ -1,4 +1,4 @@
-defmodule Witchcraft.Mixfile do
+\defmodule Witchcraft.Mixfile do
   use Mix.Project
 
   def project do
@@ -46,7 +46,7 @@ defmodule Witchcraft.Mixfile do
       {:operator,    "~> 0.2"},
 
       {:quark,       "~> 2.2"},
-      {:type_class,  github: "florius0/type_class"}
+      {:type_class,  github: "florius0/type_class", branch: "my-deps"}
     ]
   end
 
