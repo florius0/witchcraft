@@ -41,11 +41,9 @@ defmodule Witchcraft.Mixfile do
       {:earmark,     "~> 1.4",  only: :dev,                 runtime: false},
       {:ex_doc,      "~> 0.23", only: :dev,                 runtime: false},
 
-      {:exceptional, "~> 2.1"},
-
       {:operator,    "~> 0.2"},
 
-      {:quark,       "~> 2.2"},
+      {:quark,       github: "florius0/quark",      branch: "my-deps"},
       {:type_class,  github: "florius0/type_class", branch: "my-deps"}
     ]
   end
